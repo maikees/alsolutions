@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\DocumentImportController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -16,3 +17,7 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
+
+Route::get('documents/import', [DocumentImportController::class, 'showImportForm'])->name('documents.import.form');
+Route::post('documents/import', [DocumentImportController::class, 'import'])->name('documents.import');
+Route::post('documents/process-queue', [DocumentImportController::class, 'processQueue'])->name('documents.process.queue');
